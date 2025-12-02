@@ -1,3 +1,7 @@
+body {
+      background-color: rgb(35, 42, 97);
+    }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -14,7 +18,7 @@
   align-items: center;
   background: rgb(255, 255, 255);
   font-size: 1.4rem;
-}
+} 
 
 .controlls{
   padding: 2%;
