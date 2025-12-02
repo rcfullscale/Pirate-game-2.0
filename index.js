@@ -1,52 +1,76 @@
 // Array to store picked numbers
-let pickedNumbers = [];
-let lastnumber = 0
+let pickedNumbers = [];    // Random green squares
+let userChosen = [];       // Red squares
+
+
+
+
+function labelToId(label) {
+    label = label.toUpperCase();
+    const letters = ['A','B','C','D','E','F','G'];
+    const col = letters.indexOf(label[0]);
+    const row = parseInt(label[1], 10); // assumes 1–7
+
+    if (col === -1 || isNaN(row) || row < 1 || row > 7) return null;
+
+    // Calculate numeric ID 1–49
+    return row * 7 - 7 + col + 1;
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('changeButton');
+    const input = document.getElementById('cellInput');
+
+    button.addEventListener('click', () => {
+        const label = input.value.trim().toUpperCase();
+        const id = labelToId(label);
+
+        if (!id) {
+            alert("Invalid cell! Use format A1–G7.");
+            return;
+        }
+
+        const cell = document.getElementById(id.toString());
+        if (cell) {
+            cell.style.backgroundColor = 'Green';
+            userChosen.push(id); // Track red squares
+        } else {
+            alert("Cell not found!");
+        }
+
+        input.value = '';
+    });
+});
+
 
 function random() {
-    console.log("A message was logged to the console.");
+    console.log("Choosing a random square...");
 
-    // Generate a random number 1–49
     let randomInt = Math.floor(Math.random() * 49) + 1;
 
-    // Keep generating until the number is unique
-    while (pickedNumbers.includes(randomInt)) {
-        console.log("Number already picked, trying again...");
+    // Keep generating until the number is unique AND not a red square
+    while (pickedNumbers.includes(randomInt) || userChosen.includes(randomInt)) {
         randomInt = Math.floor(Math.random() * 49) + 1;
     }
 
-    // Add the unique number to the array
     pickedNumbers.push(randomInt);
 
-    document.getElementById(randomInt).style.backgroundColor = "Green";
+    const cell = document.getElementById(randomInt.toString());
+    if (cell) {
+        cell.style.backgroundColor = "green";
+    }
 
-
-    console.log("Picked number:", randomInt);
-    console.log("Picked numbers array:", pickedNumbers);
+    console.log("Random green square ID:", randomInt);
 }
+
+
 
 
 //for furture use
 function cycle(){
     if(lastnumber !== 0){
-           document.getElementById(lastnumber).style.backgroundColor = "orange"; 
+           document.getElementById(lastnumber).style.backgroundColor = "green"; 
     }
-}
-
-
-// Converts a cell label like "C6" into the numeric ID 1–49
-function labelToId(label) {
-    label = label.toUpperCase(); // Ensure uppercase
-    const letters = ['A','B','C','D','E','F','G'];
-    const letter = label[0];
-    const number = parseInt(label[1]); // Row number 1–7
-
-    if (!letters.includes(letter) || isNaN(number) || number < 1 || number > 7) {
-        return null; // Invalid input
-    }
-
-    // Calculate ID: (row-1)*7 + column index + 1
-    const rowIndex = number - 1;
-    const colIndex = letters.indexOf(letter);
-    return rowIndex * 7 + colIndex + 1;
 }
 
