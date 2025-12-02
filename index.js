@@ -110,3 +110,11 @@ function Load() {
 
     console.log("Loaded squares:", pickedNumbers);
 }
+
+
+function reset(){
+    if(confirm("are you shure you want to reset")){
+        location.reload(); 
+    }
+
+}
