@@ -1,5 +1,7 @@
 // Array to store picked numbers
 let pickedNumbers = [];    // list of squares already used
+let lastPicked = null; // stores the ID of the most recent square
+
 
 
 
