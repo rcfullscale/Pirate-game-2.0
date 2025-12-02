@@ -1,6 +1,5 @@
 // Array to store picked numbers
-let pickedNumbers = [];    // Random green squares
-let userChosen = [];       // Red squares
+let pickedNumbers = [];    // list of squares already used
 
 
 
@@ -33,8 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cell = document.getElementById(id.toString());
         if (cell) {
-            cell.style.backgroundColor = 'Green';
-            userChosen.push(id); // Track red squares
+            if (!pickedNumbers.includes(id)) {
+                cell.style.backgroundColor = 'green';
+                pickedNumbers.push(id);
+            }
         } else {
             alert("Cell not found!");
         }
@@ -44,13 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
 function random() {
     console.log("Choosing a random square...");
 
     let randomInt = Math.floor(Math.random() * 49) + 1;
 
     // Keep generating until the number is unique AND not a red square
-    while (pickedNumbers.includes(randomInt) || userChosen.includes(randomInt)) {
+    while (pickedNumbers.includes(randomInt)) {
         randomInt = Math.floor(Math.random() * 49) + 1;
     }
 
