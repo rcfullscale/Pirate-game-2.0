@@ -74,3 +74,36 @@ function cycle(){
     }
 }
 
+
+
+function openWebsite(url) {
+    window.open(url, '_blank'); // '_blank' opens it in a new tab
+}
+
+
+function Save() {
+    if (pickedNumbers.length === 0) {
+        alert("No squares picked yet!");
+        return;
+    }
+    alert("copy and save this to save the game: " + pickedNumbers.join(", "));
+}
+
+function Load() {
+    const input = prompt("Enter your saved state (comma-separated IDs):");
+
+    if (!input) return; // User cancelled
+
+    // Convert input string to array of numbers
+    const numbers = input.split(",").map(num => parseInt(num.trim(), 10));
+
+    numbers.forEach(id => {
+        const cell = document.getElementById(id.toString());
+        if (cell) {
+            cell.style.backgroundColor = "green"; // Apply saved state
+            if (!pickedNumbers.includes(id)) pickedNumbers.push(id);
+        }
+    });
+
+    console.log("Loaded squares:", pickedNumbers);
+}
