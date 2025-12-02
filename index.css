@@ -1,3 +1,21 @@
-body{
-    color: blue;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  width: 90vw;
+  height: 90vh;
+  border: 2px solid black;
+}
+
+.cell {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  font-size: 1.4rem;
+}
+
+.controlls{
+  padding: 2%;
 }
