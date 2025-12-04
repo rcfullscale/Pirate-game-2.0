@@ -6,10 +6,17 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(7, 1fr);
-  width: 90vw;
-  height: 90vh;
+
+  /* Perfect square that fits screen */
+  width: min(90vw, 90vh);
+  height: min(90vw, 90vh);
+
   border: 2px solid black;
+
+  /* Align to the left */
+  margin-left: 0;
 }
+
 
 .cell {
   border: 1px solid black;
@@ -22,9 +29,15 @@ body {
 
 .controlls{
   padding: 2%;
+  margin-top: 0;
 }
 
 .ruleslink{
   color: red;
+}
+
+.cns{
+  margin-top: 0;
+  margin-left: 80%;
 }
 
